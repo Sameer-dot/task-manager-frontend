@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/Button";
 /**
  * ConfirmationPopup component to display a confirmation dialog.
@@ -25,6 +25,7 @@ const ConfirmationPopup = ({
   onCancel,
 }) => {
   const [isOpenInternal, setIsOpenInternal] = useState(isOpen);
+  const popupRef = useRef(null);
 
   const handleConfirm = () => {
     onConfirm();
@@ -41,9 +42,30 @@ const ConfirmationPopup = ({
     setIsOpenInternal(isOpen);
   }
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        handleCancel();
+      }
+    };
+
+    if (isOpenInternal) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpenInternal]);
+
   return isOpenInternal ? (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-md p-8 shadow-lg max-w-[480px] w-full">
+      <div
+        ref={popupRef}
+        className="bg-white rounded-md p-8 shadow-lg max-w-[480px] w-full"
+      >
         <h2 className="heading-lg text-red mb-6">{title}</h2>
         <p className=" txt-md text-medium-gray mb-6">{message}</p>
         <div className="flex w-full items-center justify-between gap-4 mb-2">
