@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -14,7 +14,7 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -23,5 +23,36 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid rgba(130, 143, 163, 0.5);
+    border-radius: 2px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .custom-checkbox input {
+    display: none;
+  }
+
+  .custom-checkbox.checked {
+    background-color: #635FC7;
+    border-color: #635FC7;
+  }
+
+  .custom-checkbox .checkmark {
+    position: absolute;
+    width: 0.32rem;
+    height: 0.6rem;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    transition: all 0.2s ease;
   }
 }
