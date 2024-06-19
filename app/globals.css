@@ -25,3 +25,25 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .heading-xl {
+    @apply font-bold text-2xl leading-[30px];
+  }
+  .heading-lg {
+    @apply font-bold text-lg leading-[23px];
+  }
+  .heading-md {
+    @apply font-bold text-[15px] leading-[19px];
+  }
+  .heading-sm {
+    @apply font-bold text-xs leading-[15px] tracking-[2.4px];
+  }
+
+  .txt-md {
+    @apply font-medium text-[13px] leading-[23px];
+  }
+  .txt-bold {
+    @apply font-bold text-xs leading-[15px];
+  }
+}
