@@ -1,5 +1,3 @@
-"use client";
-import { useState } from "react";
 import { cva } from "class-variance-authority";
 
 const textArea = cva(
@@ -17,21 +15,22 @@ const textArea = cva(
   }
 );
 
-const TextArea = ({ name, error, className, ...props }) => {
-  const [value, setValue] = useState("");
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-
+const TextArea = ({
+  name,
+  value,
+  handleTextAreaChange,
+  error,
+  className,
+  ...props
+}) => {
   return (
     <div className="relative flex w-full text-body-l">
       <textarea
         name={name}
         value={value}
-        onChange={handleChange}
         placeholder="e.g. It’s always good to take a break. This 15 minute break will recharge the batteries a little."
         className={textArea({ className, error: !!error })}
+        onChange={handleTextAreaChange}
         {...props}
       />
       {error && (
