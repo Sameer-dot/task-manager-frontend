@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { cva } from "class-variance-authority";
 
 const textArea = cva(
@@ -23,6 +24,12 @@ const TextArea = ({
   className,
   ...props
 }) => {
+  const [value, setValue] = useState("");
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
   return (
     <div className="relative flex w-full text-body-l">
       <textarea

@@ -17,7 +17,6 @@ const button = cva("button", {
       full: "w-full",
     },
   },
-  compoundVariants: [{ intent: "primary", size: "medium", class: "uppercase" }],
   defaultVariants: {
     intent: "primary",
     size: "medium",
@@ -41,7 +40,8 @@ const button = cva("button", {
  * @param {...any} props.rest - Any other valid props to be passed to the button element
  * @returns {JSX.Element} Rendered Button component
  */
-export const Button = ({
+
+const Button = ({
   className,
   intent,
   size,
@@ -67,3 +67,5 @@ export const Button = ({
     {children}
   </button>
 );
+
+export default Button;

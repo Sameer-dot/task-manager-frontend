@@ -1,36 +1,19 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/Button";
 /**
- * ConfirmationPopup component to display a confirmation dialog.
+ * Resuable component to display a popup.
  *
  * @component
  * @param {object} props - Component props
- * @param {string} props.title - Title of the confirmation dialog
- * @param {string} props.message - Message or content of the confirmation dialog
- * @param {string} [props.confirmText='Confirm'] - Text for the confirmation button
- * @param {string} [props.cancelText='Cancel'] - Text for the cancel button
  * @param {boolean} props.isOpen - Boolean to control whether the confirmation popup is open
- * @param {function} props.onConfirm - Function to call when confirm button is clicked
- * @param {function} props.onCancel - Function to call when cancel button is clicked
+ * @param {function} props.handleCancel - Function to call when popup is closed by clicking outsite
  * @param {ReactNode} props.children - children to render inside the popup content area
- * @returns {JSX.Element} Rendered ConfirmationPopup component
+ * @returns {JSX.Element} Rendered Popup component with children
  */
 const Popup = (props) => {
-  const { confirmText, cancelText, isOpen, onConfirm, onCancel, children } =
-    props;
+  const { isOpen, handleCancel, children } = props;
   const [isOpenInternal, setIsOpenInternal] = useState(isOpen);
   const popupRef = useRef(null);
-
-  const handleConfirm = () => {
-    onConfirm();
-    setIsOpenInternal(false);
-  };
-
-  const handleCancel = () => {
-    onCancel();
-    setIsOpenInternal(false);
-  };
 
   // If isOpen changes from parent, update internal state accordingly
   if (isOpen !== isOpenInternal) {
@@ -61,15 +44,6 @@ const Popup = (props) => {
         className="bg-white dark:bg-dark-gray rounded-md p-8 shadow-lg max-w-[480px] mx-4 w-full"
       >
         {children}
-
-        <div className="flex flex-col min-[480px]:flex-row items-center justify-center gap-4">
-          <Button onClick={handleCancel} intent="destructive" width="full">
-            {confirmText}
-          </Button>
-          <Button onClick={handleConfirm} intent="secondary" width="full">
-            {cancelText}
-          </Button>
-        </div>
       </div>
     </div>
   ) : null;
