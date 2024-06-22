@@ -1,19 +1,20 @@
-"use client";
-import { useState } from "react";
 import LabelCheck from "./LabelCheck";
 import InputCheck from "./InputCheck";
 
-const CheckBoxInput = () => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
+const CheckBoxInput = ({ value, handleCheckboxChange, isChecked, style }) => {
   return (
-    <LabelCheck className={isChecked === true && `line-through`}>
-      <InputCheck checked={isChecked} onChange={handleCheckboxChange} />
-      {"Here comes the val"}
+    <LabelCheck
+      className={
+        isChecked
+          ? "line-through"
+          : "hover:text-black dark:hover:text-white txt-bold"
+      }
+      style={style}
+    >
+      <div className="flex">
+        <InputCheck checked={isChecked} onChange={handleCheckboxChange} />
+        <p className="text-black dark:text-white opacity-50 hover:opacity-50 ml-2">{value}</p>
+      </div>
     </LabelCheck>
   );
 };
