@@ -26,10 +26,10 @@ const CreateTaskPopup = (props) => {
       description: "",
       subtasks: [
         {
-          title: "",
+          title: "go to gym",
         },
         {
-          title: "",
+          title: "drink water",
         },
       ],
       status: "Doing",
