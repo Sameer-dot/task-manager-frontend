@@ -10,7 +10,9 @@ import DropDown from "@/components/common/DropDown";
  *
  * @component
  * @param {object} props - Component props
- * @param {string} props.mode - create / edit
+ * @param {string} props.mode - "create" / "edit"
+ * @param {object} props.task - Task Object
+ * @param {function} props.handleTaskChange - Funtion to update Task Object
  * @param {boolean} props.isOpen - Boolean to control whether the confirmation popup is open
  * @param {function} props.onConfirm - Function to call when confirm button is clicked
  * @param {function} props.onCancel - Function to call when cancel button is clicked
@@ -24,17 +26,15 @@ const CreateTaskPopup = (props) => {
       description: "",
       subtasks: [
         {
-          name: "",
+          title: "",
         },
         {
-          name: "",
-        },
-        {
-          name: "",
+          title: "",
         },
       ],
       status: "Doing",
     },
+    handleTaskChange,
     isOpen,
     onConfirm,
     onCancel,
@@ -64,10 +64,13 @@ const CreateTaskPopup = (props) => {
         />
         <div className="flex flex-col gap-3">
           {task.subtasks.map((subtask, index) => (
-            <div className="flex gap-4 items-center">
+            <div
+              key={`subtask-input-${subtask.title}`}
+              className="flex gap-4 items-center"
+            >
               <Input
                 label={index === 0 ? "Subtasks" : ""}
-                value={task.title}
+                value={subtask.title}
                 type={"text"}
               />
               <Image
@@ -86,7 +89,11 @@ const CreateTaskPopup = (props) => {
             + Add New Subtask
           </Button>
         </div>
-        <DropDown label="status" value={task.status} options={["To Do", "Doing", "Done"]} />
+        <DropDown
+          label="status"
+          value={task.status}
+          options={["To Do", "Doing", "Done"]}
+        />
 
         <Button width="full" size="small">
           {mode === "create" ? "Create Task" : "Save Changes"}
