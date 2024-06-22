@@ -56,6 +56,7 @@ body {
     transition: all 0.2s ease;
   }
 }
+
 @layer components {
   .heading-xl {
     @apply font-bold text-2xl leading-[30px];
