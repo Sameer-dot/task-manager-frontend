@@ -1,7 +1,9 @@
+import Layout from "@/components/Layout";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <p className="heading-xl text-purple">Kanban App</p>
-    </main>
+    <Layout>
+      <p className="heading-xl text-purple"></p>
+    </Layout>
   );
 }
