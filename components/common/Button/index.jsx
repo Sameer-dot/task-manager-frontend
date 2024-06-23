@@ -19,7 +19,7 @@ const button = cva("button", {
   },
   defaultVariants: {
     intent: "primary",
-    size: "medium",
+    size: "large",
     width: "fit",
   },
 });
