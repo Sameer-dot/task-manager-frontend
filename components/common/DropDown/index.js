@@ -3,11 +3,16 @@ import { useState } from "react";
 import Image from "next/image";
 import TextInput from "../TextInput/index";
 
-const DropDown = ({ label, value, options }) => {
+const DropDown = ({ label, value, options, handleStatusChange }) => {
   const [openMenu, setOpenMenu] = useState(false);
 
+  const handleOptionClick = (option) => {
+    handleStatusChange(option);
+    setOpenMenu(false);
+  };
+
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full mt-6">
       {label && (
         <label
           // htmlFor={name}
@@ -70,7 +75,7 @@ const DropDown = ({ label, value, options }) => {
             {options.map((option) => (
               <li
                 key={option}
-                onClick={() => null}
+                onClick={() => handleOptionClick(option)}
                 className="
                       w-full
                       cursor-pointer
