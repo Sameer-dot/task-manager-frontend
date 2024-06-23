@@ -40,8 +40,7 @@ const BoardLink = ({ board, selected, handleBoardChange }) => {
   );
 };
 
-const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
+const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const [theme, setTheme] = useState("dark");
   const [selectedBoard, setSelectedBoard] = useState("001");
   const handleThemeChange = () => {
@@ -66,9 +65,9 @@ const Sidebar = () => {
     setSelectedBoard(id);
   };
   return (
-    <div
+    <aside
       className={
-        "flex flex-col items-start justify-between h-full min-h-screen w-full max-w-[300px] bg-white py-8 pr-6 select-none relative transition-transform " +
+        "flex flex-col items-start justify-between h-full min-h-screen fixed w-full max-w-[300px] bg-white py-8 pr-6 select-none transition-transform duration-200 top-0 z-50 border-r border-light-lines " +
         (showSidebar ? "translate-x-0 " : "translate-x-[-300px] ")
       }
     >
@@ -120,7 +119,7 @@ const Sidebar = () => {
           >
             <div
               className={
-                "bg-white h-[14px] w-[14px] rounded-full mx-[3px] duration-300 " +
+                "bg-white h-[14px] w-[14px] rounded-full mx-[3px] duration-200 " +
                 (theme === "dark" ? "translate-x-5" : "translate-x-0")
               }
             />
@@ -131,7 +130,7 @@ const Sidebar = () => {
           </div>
         </div>
         <div
-          className="flex items-center cursor-pointer gap-4 select-none py-[14px]"
+          className="flex items-center cursor-pointer gap-4 select-none py-[14px] hover:scale-105 active:scale-95"
           onClick={() => {
             setShowSidebar(false);
           }}
@@ -144,18 +143,18 @@ const Sidebar = () => {
       </div>
       <div
         className={
-          "absolute right-[-64px] bottom-8 bg-purple flex items-center justify-center p-[22px] pl-[18px] rounded-r-full cursor-pointer transition-transform " +
+          "absolute right-[-64px] bottom-8 bg-purple flex items-center justify-center p-[22px] pl-[18px] rounded-r-full cursor-pointer transition-transform duration-200 group " +
           (showSidebar ? "translate-x-[-364px] " : "translate-x-0")
         }
         onClick={() => {
           setShowSidebar(true);
         }}
       >
-        <div className="h-4 w-6 relative">
+        <div className="h-4 w-6 relative group-hover:scale-105 group-active:scale-95">
           <Image src={"/icon-show-sidebar.svg"} alt="eye icon" fill />
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

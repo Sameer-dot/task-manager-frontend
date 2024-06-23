@@ -1,9 +1,9 @@
 import Layout from "@/components/Layout";
-
+import Dashboard from "@/components/Dashboard";
 export default function Home() {
   return (
     <Layout>
-      <p className="heading-xl text-purple"></p>
+      <Dashboard />
     </Layout>
   );
 }

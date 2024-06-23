@@ -35,7 +35,7 @@ const DropDown = ({ label, value, options, handleStatusChange }) => {
             cursor-pointer
             select-none
             text-black
-            duration-300
+            duration-200
             focus:border-purple
             dark:text-white
           "
@@ -49,7 +49,7 @@ const DropDown = ({ label, value, options, handleStatusChange }) => {
             absolute 
             right-4 
             top-6 
-            duration-300 
+            duration-200 
             stroke-purple
             ${openMenu ? "rotate-180" : "rotate-0"}
           `}
@@ -79,7 +79,7 @@ const DropDown = ({ label, value, options, handleStatusChange }) => {
                 className="
                       w-full
                       cursor-pointer
-                      duration-300
+                      duration-200
                       hover:text-medium-gray
                       dark:hover:text-white
                     "
