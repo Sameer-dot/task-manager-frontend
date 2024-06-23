@@ -6,39 +6,20 @@ import TextArea from "@/components/common/TextArea";
 import Image from "next/image";
 import DropDown from "@/components/common/DropDown";
 /**
- * Popup component to display a Create or Edit Form of a Task.
+ * Popup component to display a Create or Edit Form of a Board.
  *
  * @component
  * @param {object} props - Component props
- * @param {string} props.mode - "create" / "edit"
- * @param {object} props.task - Task Object
- * @param {function} props.handleTaskChange - Funtion to update Task Object
+ * @param {string} props.mode - "add" / "edit"
+ * @param {object} props.board - Board Object
+ * @param {function} props.handleBoardUpdate - Funtion to update Board
  * @param {boolean} props.isOpen - Boolean to control whether the confirmation popup is open
  * @param {function} props.onConfirm - Function to call when confirm button is clicked
  * @param {function} props.onCancel - Function to call when cancel button is clicked
  * @returns {JSX.Element} Rendered ConfirmationPopup component
  */
-const CreateTaskPopup = (props) => {
-  const {
-    mode,
-    task = {
-      title: "",
-      description: "",
-      subtasks: [
-        {
-          title: "go to gym",
-        },
-        {
-          title: "drink water",
-        },
-      ],
-      status: "Doing",
-    },
-    handleTaskChange,
-    isOpen,
-    onConfirm,
-    onCancel,
-  } = props;
+const AddBoardPopup = (props) => {
+  const { mode, board, handleBoardUpdate, isOpen, onConfirm, onCancel } = props;
   const [isOpenInternal, setIsOpenInternal] = useState(isOpen);
 
   const handleConfirm = () => {
@@ -50,27 +31,25 @@ const CreateTaskPopup = (props) => {
     onCancel();
     setIsOpenInternal(false);
   };
+
+  const handleDeleteColumn = () => {};
+
   return (
     <Popup {...props} isOpen={isOpenInternal} handleCancel={handleCancel}>
       <h2 className=" heading-lg text-black mb-6">
-        {mode === "create" ? "Add New Task" : "Edit Task"}
+        {mode === "create" ? "Add New Board" : "Edit Board"}
       </h2>
       <div className="flex flex-col gap-6">
-        <Input label={"Title"} value={task.title} type={"text"} />
-        <TextArea
-          label={"Description"}
-          value={task.description}
-          type={"text"}
-        />
+        <Input label={"Name"} value={board.name} type={"text"} />
         <div className="flex flex-col gap-3">
-          {task.subtasks.map((subtask, index) => (
+          {board.columns.map((column, index) => (
             <div
-              key={`subtask-input-${subtask.title}`}
+              key={`column-input-${column.name}`}
               className="flex gap-4 items-center"
             >
               <Input
-                label={index === 0 ? "Subtasks" : ""}
-                value={subtask.title}
+                label={index === 0 ? "Board Columns" : ""}
+                value={column.name}
                 type={"text"}
               />
               <Image
@@ -86,21 +65,16 @@ const CreateTaskPopup = (props) => {
             </div>
           ))}
           <Button width="full" intent="secondary" size="small">
-            + Add New Subtask
+            + Add New Column
           </Button>
         </div>
-        <DropDown
-          label="status"
-          value={task.status}
-          options={["To Do", "Doing", "Done"]}
-        />
 
         <Button width="full" size="small">
-          {mode === "create" ? "Create Task" : "Save Changes"}
+          {mode === "create" ? "Create New Board" : "Save Changes"}
         </Button>
       </div>
     </Popup>
   );
 };
 
-export default CreateTaskPopup;
+export default AddBoardPopup;
