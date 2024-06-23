@@ -6,12 +6,12 @@ import TextArea from "@/components/common/TextArea";
 import Image from "next/image";
 import DropDown from "@/components/common/DropDown";
 /**
- * Popup component to display a Create or Edit Form of a Task.
+ * Popup component to display a Create or Edit Form of a Board.
  *
  * @component
  * @param {object} props - Component props
  * @param {string} props.mode - "add" / "edit"
- * @param {object} props.board - Task Object
+ * @param {object} props.board - Board Object
  * @param {function} props.handleBoardUpdate - Funtion to update Board
  * @param {boolean} props.isOpen - Boolean to control whether the confirmation popup is open
  * @param {function} props.onConfirm - Function to call when confirm button is clicked
@@ -44,7 +44,7 @@ const AddBoardPopup = (props) => {
         <div className="flex flex-col gap-3">
           {board.columns.map((column, index) => (
             <div
-              key={`subtask-input-${column.name}`}
+              key={`column-input-${column.name}`}
               className="flex gap-4 items-center"
             >
               <Input
