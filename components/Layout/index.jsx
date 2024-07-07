@@ -5,12 +5,23 @@ import Sidebar from "./Sidebar";
 import Image from "next/image";
 const Layout = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [theme, setTheme] = useState("dark");
   return (
-    <div className="layout bg-background-light min-h-screen max-h-screen flex flex-col relative w-full overflow-y-hidden">
-      <Navbar showSidebar={showSidebar} />
+    <div
+      className={
+        "layout bg-background-light dark:bg-very-dark-gray min-h-screen max-h-screen flex flex-col relative w-full overflow-y-hidden " +
+        theme
+      }
+    >
+      <Navbar showSidebar={showSidebar} theme={theme} />
       <div className="flex relative transition-all duration-200">
         {showSidebar ? (
-          <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+          <Sidebar
+            showSidebar={showSidebar}
+            theme={theme}
+            setTheme={setTheme}
+            setShowSidebar={setShowSidebar}
+          />
         ) : (
           <div
             className={

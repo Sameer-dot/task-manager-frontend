@@ -7,13 +7,13 @@ const CheckBoxInput = ({ value, handleCheckboxChange, isChecked, style }) => {
       className={
         isChecked
           ? "line-through"
-          : "hover:text-black dark:hover:text-white txt-bold"
+          : "hover:text-black dark:text-white dark:hover:text-white txt-bold"
       }
       style={style}
     >
       <div className="flex">
         <InputCheck checked={isChecked} onChange={handleCheckboxChange} />
-        <p className="text-black dark:text-white opacity-50 hover:opacity-50 ml-2">{value}</p>
+        <p className="text-black dark:text-white dark:text-white opacity-50 hover:opacity-50 ml-2">{value}</p>
       </div>
     </LabelCheck>
   );

@@ -42,7 +42,7 @@ const Popup = (props) => {
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div
         ref={popupRef}
-        className="bg-white dark:bg-dark-gray rounded-md p-8 shadow-lg max-w-[480px] mx-4 w-full"
+        className="bg-white dark:bg-dark-gray dark:bg-dark-gray rounded-md p-8 shadow-lg max-w-[480px] mx-4 w-full"
       >
         {children}
       </div>

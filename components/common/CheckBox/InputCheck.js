@@ -10,7 +10,7 @@ const InputCheck = ({ checked, onChange }) => {
       <span
         className={`
           custom-checkbox
-          ${checked ? "checked" : "bg-white dark:bg-dark-gray"}
+          ${checked ? "checked" : "bg-white dark:bg-dark-gray dark:bg-dark-gray"}
         `}
       >
         {checked && <span className="checkmark"></span>}

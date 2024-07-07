@@ -34,7 +34,7 @@ const DropDown = ({ label, value, options, handleStatusChange }) => {
             mt-2
             cursor-pointer
             select-none
-            text-black
+            text-black dark:text-white
             duration-200
             focus:border-purple
             dark:text-white
@@ -63,7 +63,7 @@ const DropDown = ({ label, value, options, handleStatusChange }) => {
               w-full 
               flex-col 
               rounded-lg 
-              bg-background-light
+              bg-background-light dark:bg-very-dark-gray
               p-2
               text-body-l 
               dark:bg-very-dark-gray 
