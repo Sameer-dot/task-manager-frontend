@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "selector",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "purple": "#635FC7",
+        purple: "#635FC7",
         "purple-hover": "#A8A4FF",
         red: "#EA5555",
         "red-hover": "#FF9898",

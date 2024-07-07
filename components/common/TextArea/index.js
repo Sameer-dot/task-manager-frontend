@@ -3,7 +3,7 @@ import { useState } from "react";
 import { cva } from "class-variance-authority";
 
 const textArea = cva(
-  "mt-2 h-[112px] w-full resize-none rounded-[4px] border-[1px] border-medium-gray bg-transparent py-2 pl-4 text-[15px] font-bold dark:text-white text-black outline-none duration-200 focus:border-purple",
+  "mt-2 h-[112px] w-full resize-none rounded-[4px] border-[1px] border-medium-gray bg-transparent py-2 pl-4 text-[15px] font-bold dark:text-white text-black dark:text-white outline-none duration-200 focus:border-purple",
   {
     variants: {
       error: {
