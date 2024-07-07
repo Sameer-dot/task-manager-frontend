@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 const input = cva(
-  "h-10 w-full rounded-[4px] border-[1px] border-medium-gray border-opacity-25 bg-transparent py-2 pl-4 text-[15px] font-medium leading-[19px] dark:text-white text-black outline-none duration-300 focus:border-purple",
+  "h-10 w-full rounded-[4px] border-[1px] border-medium-gray border-opacity-25 bg-transparent py-2 pl-4 text-[15px] font-medium leading-[19px] dark:text-white text-black outline-none duration-200 focus:border-purple",
   {
     variants: {
       error: {

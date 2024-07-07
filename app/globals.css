@@ -78,3 +78,8 @@ body {
     @apply font-bold text-xs leading-[15px];
   }
 }
+
+
+.height-max {
+  min-height: calc(100% - 90px);
+}
