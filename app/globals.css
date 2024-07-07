@@ -42,8 +42,8 @@ body {
   }
 
   .custom-checkbox.checked {
-    background-color: #635FC7;
-    border-color: #635FC7;
+    background-color: #635fc7;
+    border-color: #635fc7;
   }
 
   .custom-checkbox .checkmark {
@@ -79,7 +79,10 @@ body {
   }
 }
 
-
 .height-max {
   min-height: calc(100% - 90px);
+}
+
+.card-shadow {
+  box-shadow: 0px 4px 6px 0px rgba(54, 78, 126, 0.1);
 }
