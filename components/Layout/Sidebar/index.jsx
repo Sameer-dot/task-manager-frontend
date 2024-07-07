@@ -67,18 +67,18 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
   return (
     <aside
       className={
-        "flex flex-col items-start justify-between h-full min-h-screen fixed w-full max-w-[300px] bg-white py-8 pr-6 select-none transition-transform duration-200 top-0 z-50 border-r border-light-lines " +
-        (showSidebar ? "translate-x-0 " : "translate-x-[-300px] ")
+        "flex flex-col items-start justify-between h-full min-h-screen fixed w-full max-w-[300px] bg-white py-8 select-none transition-transform duration-200 top-0 z-40 border-r border-light-lines " +
+        (showSidebar ? "translate-x-0 relative" : "translate-x-[-300px] ")
       }
     >
       <div>
-        <Image
+        {/* <Image
           src={"/logo-dark.svg"}
           alt="company logo"
           className="ml-8 mb-14"
           width={150}
           height={25}
-        />
+        /> */}
         <div className="flex flex-col">
           <p className="txt-bold text-medium-gray mb-5 ml-8 tracking-[2.4px]">
             {"All Board(s)"}
@@ -106,7 +106,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       </div>
 
       {/* Sidebar Footer */}
-      <div className="flex flex-col px-6 w-full gap-2">
+      <div className="flex flex-col px-6 w-full gap-2 mt-auto mb-20">
         <div className="flex items-center justify-center gap-6 rounded-md w-full py-[14px] bg-background-light">
           <div className="h-[18px] w-[18px] relative cursor-pointer">
             <Image src={"/icon-light-theme.svg"} alt="hide icon" fill />
@@ -141,7 +141,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
           <p className="heading-md text-medium-gray">Hide Sidebar</p>
         </div>
       </div>
-      <div
+      {/* <div
         className={
           "absolute right-[-64px] bottom-8 bg-purple flex items-center justify-center p-[22px] pl-[18px] rounded-r-full cursor-pointer transition-transform duration-200 group " +
           (showSidebar ? "translate-x-[-364px] " : "translate-x-0")
@@ -153,7 +153,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         <div className="h-4 w-6 relative group-hover:scale-105 group-active:scale-95">
           <Image src={"/icon-show-sidebar.svg"} alt="eye icon" fill />
         </div>
-      </div>
+      </div> */}
     </aside>
   );
 };

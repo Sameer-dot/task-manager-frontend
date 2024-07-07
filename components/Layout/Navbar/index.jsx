@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "@/components/common/Button";
 const Navbar = ({ showSidebar }) => {
   return (
-    <nav className="flex items-center fixed top-0 left-0 right-0 pl-6 pr-8 bg-white z-50 transition-all duration-200 border-b border-light-lines">
+    <nav className="flex items-center sticky top-0 left-0 right-0 pl-6 pr-8 bg-white z-50 transition-all duration-200 border-b border-light-lines">
       <div
         className={
           "border-r border-light-lines py-8  " +
