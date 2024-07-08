@@ -59,7 +59,7 @@ const ViewTaskPopup = (props) => {
       {/* Custom content as children */}
 
       <div className="flex justify-between items-center mb-6">
-        <h2 className=" heading-lg text-black dark:text-white w-[387px]">
+        <h2 className=" heading-lg text-black dark:text-white dark:text-white w-[387px]">
           {title}
         </h2>
         <div
@@ -73,7 +73,7 @@ const ViewTaskPopup = (props) => {
             height={20}
           />
           {openMenu && (
-            <div className="bg-white dark:bg-very-dark-gray absolute top-[31px] left-[-75px] w-[192px] h-[94px] rounded-lg flex flex-col items-start justify-center pl-4 txt-md">
+            <div className="bg-white dark:bg-dark-gray dark:bg-very-dark-gray absolute top-[31px] left-[-75px] w-[192px] h-[94px] rounded-lg flex flex-col items-start justify-center pl-4 txt-md">
               <p className="text-medium-gray mb-2" onClick={handleTaskEdit}>
                 Edit Task
               </p>

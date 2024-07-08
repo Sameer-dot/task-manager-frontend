@@ -98,7 +98,7 @@ const TaskCard = (props) => {
 
   return (
     <div
-      className="w-72 px-4 py-6 bg-white dark:bg-dark-gray h-fit rounded-lg card-shadow cursor-grab"
+      className="w-72 px-4 py-6 bg-white dark:bg-dark-gray  h-fit rounded-lg card-shadow cursor-grab"
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -111,7 +111,7 @@ const TaskCard = (props) => {
         setMouseIsOver(false);
       }}
     >
-      <p className="heading-md text-black dark:text-white mb-2 select-none">{task.title}</p>
+      <p className="heading-md text-black dark:text-white  mb-2 select-none">{task.title}</p>
       <p className="txt-md text-medium-gray select-none">{`${task.completeTask} of ${task.totalTasks} subtasks`}</p>
     </div>
   );

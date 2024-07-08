@@ -9,7 +9,7 @@ const BoardLink = ({ board, selected, handleBoardChange }) => {
     <div
       className={
         "flex items-center w-full h-12 rounded-r-full pl-8 gap-4 cursor-pointer group " +
-        (selected ? "bg-purple" : "bg-white hover:bg-purple-hover")
+        (selected ? "bg-purple" : "bg-white dark:bg-dark-gray hover:bg-purple-hover")
       }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -40,8 +40,8 @@ const BoardLink = ({ board, selected, handleBoardChange }) => {
   );
 };
 
-const Sidebar = ({ showSidebar, setShowSidebar }) => {
-  const [theme, setTheme] = useState("dark");
+const Sidebar = (props) => {
+  const { showSidebar, setShowSidebar, theme, setTheme } = props;
   const [selectedBoard, setSelectedBoard] = useState("001");
   const handleThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -67,7 +67,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
   return (
     <aside
       className={
-        "flex flex-col items-start justify-between h-full min-h-screen fixed w-full max-w-[300px] bg-white py-8 select-none transition-transform duration-200 top-0 z-40 border-r border-light-lines " +
+        "flex flex-col items-start justify-between h-full min-h-screen fixed w-full max-w-[300px] bg-white dark:bg-dark-gray py-8 select-none transition-transform duration-200 top-0 z-40 border-r border-light-lines dark:border-dark-lines " +
         (showSidebar ? "translate-x-0 relative" : "translate-x-[-300px] ")
       }
     >
@@ -107,8 +107,13 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
       {/* Sidebar Footer */}
       <div className="flex flex-col px-6 w-full gap-2 mt-auto mb-20">
-        <div className="flex items-center justify-center gap-6 rounded-md w-full py-[14px] bg-background-light">
-          <div className="h-[18px] w-[18px] relative cursor-pointer">
+        <div className="flex items-center justify-center gap-6 rounded-md w-full py-[14px] bg-background-light dark:bg-very-dark-gray">
+          <div
+            className="h-[18px] w-[18px] relative cursor-pointer"
+            onClick={() => {
+              setTheme("light");
+            }}
+          >
             <Image src={"/icon-light-theme.svg"} alt="hide icon" fill />
           </div>
           <div
@@ -119,13 +124,18 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
           >
             <div
               className={
-                "bg-white h-[14px] w-[14px] rounded-full mx-[3px] duration-200 " +
+                "bg-white dark:bg-dark-gray h-[14px] w-[14px] rounded-full mx-[3px] duration-200 " +
                 (theme === "dark" ? "translate-x-5" : "translate-x-0")
               }
             />
           </div>
 
-          <div className="h-[15px] w-[15px] relative cursor-pointer">
+          <div
+            className="h-[15px] w-[15px] relative cursor-pointer"
+            onClick={() => {
+              setTheme("dark");
+            }}
+          >
             <Image src={"/icon-dark-theme.svg"} alt="hide icon" fill />
           </div>
         </div>

@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import Popup from ".."; // Adjust the import path as per your project structure
 import Input from "@/components/common/TextInput";
@@ -36,7 +37,7 @@ const AddBoardPopup = (props) => {
 
   return (
     <Popup {...props} isOpen={isOpenInternal} handleCancel={handleCancel}>
-      <h2 className=" heading-lg text-black mb-6">
+      <h2 className=" heading-lg text-black dark:text-white mb-6">
         {mode === "create" ? "Add New Board" : "Edit Board"}
       </h2>
       <div className="flex flex-col gap-6">
