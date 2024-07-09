@@ -1,157 +1,66 @@
-import { SortableContext, useSortable } from "@dnd-kit/sortable";
-// import TrashIcon from "../icons/TrashIcon";
-// import PlusIcon from "../icons/PlusIcon";
+import { useMemo, useState, useEffect } from "react";
+import { useDroppable } from "@dnd-kit/core";
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import TaskCard from "../../common/TaskCard";
 import { CSS } from "@dnd-kit/utilities";
-import { useMemo, useState } from "react";
 
-function ColumnContainer({
-  column,
-  deleteColumn,
-  // updateColumn,
-  createTask,
-  tasks,
-  deleteTask,
-  updateTask,
-}) {
+function ColumnContainer({colName, tasks, taskQty, colId, colNum }) {
+  const [dotColor, setDotColor] = useState("bg-[#67E2AE]");
   const [editMode, setEditMode] = useState(false);
 
-  const tasksIds = useMemo(() => {
-    return tasks.map((task) => task.id);
+  const taskListId = useMemo(() => {
+    return tasks?.length ? tasks.map((task) => task.id) : [0];
   }, [tasks]);
 
-  const {
-    setNodeRef,
-    attributes,
-    listeners,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
-    id: column.id,
-    data: {
-      type: "Column",
-      column,
-    },
-    disabled: editMode,
-  });
+  useEffect(() => {
+    const purpleDotId = [1, 4, 7, 10, 13];
+    if (colNum % 3 === 0 || colNum === 0) {
+      setDotColor("bg-[#49C4E5]");
+      return;
+    }
+    if (purpleDotId.includes(colNum)) {
+      setDotColor("bg-[#8471F2]");
+      return;
+    }
+    setDotColor("bg-[#67E2AE]");
+  }, [colNum]);
 
-  const style = {
-    transition,
-    transform: CSS.Transform.toString(transform),
-  };
-
-  if (isDragging) {
-    return (
-      <div
-        ref={setNodeRef}
-        style={style}
-        className="
-          bg-columnBackgroundColor
-          opacity-40
-          border-2
-          border-pink-500
-          w-[350px]
-          h-[500px]
-          max-h-[500px]
-          rounded-md
-          flex
-          flex-col
-        "
-      ></div>
-    );
-  }
+  const { setNodeRef } = useDroppable({ id: colId.toString() });
+  const { transform, transition } = useSortable({ id: colId });
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      className="
-        bg-columnBackgroundColor
-        w-[350px]
-        h-[500px]
-        max-h-[500px]
-        rounded-md
-        flex
-        flex-col
-      "
-    >
-      {/* Column title */}
-      <div
-        {...attributes}
-        {...listeners}
-        onClick={() => {
-          setEditMode(true);
-        }}
-        className="
-          text-md
-          h-[60px]
-          cursor-grab
-          p-3
-          font-bold
-          flex
-          items-center
-          justify-between
-        "
+    <div className="pl-6 touch-none self-start h-full">
+      <SortableContext
+        id={colId.toString()}
+        items={taskListId}
+        strategy={verticalListSortingStrategy}
       >
-        <div className="flex gap-2">
-          {column.title}
-          {/* {editMode && (
-            <input
-              className="bg-black focus:border-rose-500 border rounded outline-none px-2"
-              value={column.title}
-              onChange={(e) => updateColumn(column.id, e.target.value)}
-              autoFocus
-              onBlur={() => {
-                setEditMode(false);
-              }}
-              onKeyDown={(e) => {
-                if (e.key !== "Enter") return;
-                setEditMode(false);
-              }}
-            />
-          )} */}
+        <div className="flex items-center pb-6 w-[280px]" ref={setNodeRef}>
+          <span
+            className={`${dotColor} w-[15px] aspect-square rounded-full mr-3`}
+          ></span>
+          <h2 className="text-medium-gray text-600">
+            {colName} ({taskQty})
+          </h2>
         </div>
-        <button
-          onClick={() => {
-            deleteColumn(column.id);
-          }}
-          className="
-            stroke-gray-500
-            hover:stroke-white
-            hover:bg-columnBackgroundColor
-            rounded
-            px-1
-            py-2
-          "
-        >
-          {/* <TrashIcon /> */}
-        </button>
-      </div>
-
-      {/* Column task container */}
-      <div className="flex flex-grow flex-col gap-4 p-2 overflow-x-hidden overflow-y-auto">
-        <SortableContext items={tasksIds}>
+        <div className="flex flex-col overflow-y-auto max-h-[calc(80vh-60px)]">
+          {" "}
           {tasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              task={task}
-              deleteTask={deleteTask}
-              updateTask={updateTask}
-            />
+            <div key={task.id}>
+              <TaskCard
+                taskName={task.title}
+                subTasks={task.subtasks}
+                taskId={task.id}
+                colId={colId}
+              />
+            </div>
           ))}
-        </SortableContext>
-      </div>
-      {/* Column footer */}
-      {/* <button
-        className="flex gap-2 items-center border-columnBackgroundColor border-2 rounded-md p-4 border-x-columnBackgroundColor hover:bg-mainBackgroundColor hover:text-rose-500 active:bg-black"
-        onClick={() => {
-          createTask(column.id);
-        }}
-      >
-        <PlusIcon />
-        Add task
-      </button> */}
+        </div>
+      </SortableContext>
     </div>
   );
 }
