@@ -1,16 +1,47 @@
-const TaskCard = (props) => {
+import { useState, useEffect } from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+const TaskCard = ({taskName, subTasks, taskId, colId }) => {
+  const [mouseIsOver, setMouseIsOver] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [completedTasks, setCompletedTasks] = useState(0);
+
+  useEffect(() => {
+    setCompletedTasks(subTasks.filter((item) => item.isCompleted).length);
+  }, [subTasks]);
+
   const {
-    task = {
-      title:
-        "Create paper prototypes and conduct 10 usability tests with potential customers",
-      completeTask: 2,
-      totalTasks: 5,
-    },
-  } = props;
+    setNodeRef,
+    attributes,
+    listeners,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: taskId });
+
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+  };
+
   return (
-    <div className="w-72 px-4 py-6 bg-white dark:bg-dark-gray dark:bg-dark-gray h-fit rounded-lg card-shadow">
-      <p className="heading-md text-black dark:text-white dark:text-white mb-2">{task.title}</p>
-      <p className="txt-md text-medium-gray ">{`${task.completeTask} of ${task.totalTasks} subtasks`}</p>
+    <div
+      className="bg-white dark:bg-dark-gray w-[280px] cursor-pointer touch-none
+      shadow-[0px_4px_6px_rgba(54,_78,_126,_0.101545)]
+      z-[-30] mb-5 rounded-lg px-4 py-[1.4375rem]"
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      //onClick={toggleEditMode}
+      onMouseEnter={() => setMouseIsOver(true)}
+      onMouseLeave={() => setMouseIsOver(false)}
+    >
+      <p className="heading-md text-black dark:text-white mb-2 select-none">
+        {taskName}
+      </p>
+      <p className="txt-md text-medium-gray select-none">{`${completedTasks} of ${subTasks?.length} subtasks`}</p>
     </div>
   );
 };

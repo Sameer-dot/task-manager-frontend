@@ -8,6 +8,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "dark-custom-gradient":
+          "linear-gradient(to bottom, #2B2C37 0%, #2B2C37 50%, #2B2C37 100%)",
+        "light-custom-gradient":
+          "linear-gradient(to bottom, #E9EFFA 0%, #E9EFFA 50%, #E9EFFA 100%)",
+      },
       colors: {
         purple: "#635FC7",
         "purple-hover": "#A8A4FF",
