@@ -51,6 +51,7 @@ const CreateTaskPopup = (props) => {
     onCancel();
     setIsOpenInternal(false);
   };
+  
   return (
     <Popup {...props} isOpen={isOpenInternal} handleCancel={handleCancel}>
       <h2 className=" heading-lg text-black dark:text-white mb-6">

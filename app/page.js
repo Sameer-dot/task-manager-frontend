@@ -1,9 +1,13 @@
 import Layout from "@/components/Layout";
 import Dashboard from "@/components/Dashboard";
+import { ModalsProvider } from "@/context/ModalsContext";
+
 export default function Home() {
   return (
-    <Layout>
-      <Dashboard />
-    </Layout>
+    <ModalsProvider>
+      <Layout>
+        <Dashboard />
+      </Layout>
+    </ModalsProvider>
   );
 }
