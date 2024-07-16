@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useModalsContext } from "@/context/ModalsContext";
+import { ModalState } from "@/assets/constants/modalStates";
 
 const BoardLink = ({ board, selected, handleBoardChange }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -43,9 +45,17 @@ const BoardLink = ({ board, selected, handleBoardChange }) => {
 const Sidebar = (props) => {
   const { showSidebar, setShowSidebar, theme, setTheme } = props;
   const [selectedBoard, setSelectedBoard] = useState("001");
+
+  const { setModalState } = useModalsContext();
+
+  const addNewBoard = () => {
+    setModalState({ mode: "create", open: true, view: ModalState.addBoard });
+  };
+
   const handleThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
+
   const boards = [
     {
       name: "Platform Launch",
@@ -95,6 +105,7 @@ const Sidebar = (props) => {
             className={
               "flex items-center w-full h-12 rounded-r-full pl-8 gap-4 cursor-pointer text-purple hover:scale-105 active:scale-95"
             }
+            onClick={addNewBoard}
           >
             <div className="h-4 w-4 relative">
               <Image src={"/icon-board-purple.svg"} alt="board icon" fill />
