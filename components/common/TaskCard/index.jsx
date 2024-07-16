@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useModalsContext } from "@/context/ModalsContext";
+import { ModalState } from "@/assets/constants/modalStates";
 
 const TaskCard = ({taskName, subTasks, taskId, colId }) => {
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [completedTasks, setCompletedTasks] = useState(0);
+  const { setModalState } = useModalsContext();
 
   useEffect(() => {
     setCompletedTasks(subTasks.filter((item) => item.isCompleted).length);
@@ -25,6 +28,11 @@ const TaskCard = ({taskName, subTasks, taskId, colId }) => {
     transform: CSS.Transform.toString(transform),
   };
 
+
+  const openTaskPopUp = () => {
+    setModalState({ open: true, view: ModalState.viewTask });
+  };
+
   return (
     <div
       className="bg-white dark:bg-dark-gray w-[280px] cursor-pointer touch-none
@@ -34,7 +42,7 @@ const TaskCard = ({taskName, subTasks, taskId, colId }) => {
       style={style}
       {...attributes}
       {...listeners}
-      //onClick={toggleEditMode}
+      onClick={openTaskPopUp}
       onMouseEnter={() => setMouseIsOver(true)}
       onMouseLeave={() => setMouseIsOver(false)}
     >

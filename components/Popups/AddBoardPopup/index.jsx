@@ -41,9 +41,9 @@ const AddBoardPopup = (props) => {
         {mode === "create" ? "Add New Board" : "Edit Board"}
       </h2>
       <div className="flex flex-col gap-6">
-        <Input label={"Name"} value={board.name} type={"text"} />
+        <Input label={"Name"} value={board?.name} type={"text"} />
         <div className="flex flex-col gap-3">
-          {board.columns.map((column, index) => (
+          {board?.columns.map((column, index) => (
             <div
               key={`column-input-${column.name}`}
               className="flex gap-4 items-center"

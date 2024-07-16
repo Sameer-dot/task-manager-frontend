@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Popup from ".."; // Adjust the import path as per your project structure
 import Input from "@/components/common/TextInput";
@@ -51,7 +51,7 @@ const CreateTaskPopup = (props) => {
     onCancel();
     setIsOpenInternal(false);
   };
-  
+
   return (
     <Popup {...props} isOpen={isOpenInternal} handleCancel={handleCancel}>
       <h2 className=" heading-lg text-black dark:text-white mb-6">

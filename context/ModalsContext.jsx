@@ -6,7 +6,7 @@ export const ModalsContext = createContext();
 export const ModalsProvider = ({ children }) => {
   const [modalState, setModalState] = useState({
     open: false,
-    view: "viewTask",
+    view: "",
   });
 
   return (

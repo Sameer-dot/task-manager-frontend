@@ -6,8 +6,8 @@ import { ModalState } from "@/assets/constants/modalStates";
 const Navbar = ({ showSidebar, theme }) => {
   const { setModalState } = useModalsContext();
 
-  const handleNewTask = () => {
-    setModalState({ open: true, view: ModalState.addTask });
+  const addNewTask = () => {
+    setModalState({ mode: "create", open: true, view: ModalState.addTask });
   };
 
   return (
@@ -28,7 +28,7 @@ const Navbar = ({ showSidebar, theme }) => {
       <div className="flex w-full pl-8 items-center justify-between">
         <p className="heading-xl text-black dark:text-white">Platform Launch</p>
         <div className="flex">
-          <Button onClick={handleNewTask}>+ Add New Task</Button>
+          <Button onClick={addNewTask}>+ Add New Task</Button>
         </div>
       </div>
     </nav>

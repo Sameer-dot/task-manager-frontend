@@ -5,6 +5,8 @@ import Popup from "../index";
 import Button from "@/components/common/Button";
 import CheckBoxInput from "@/components/common/CheckBox";
 import DropDown from "@/components/common/DropDown";
+import { useModalsContext } from "@/context/ModalsContext";
+import { ModalState } from "@/assets/constants/modalStates";
 
 const subtasks = [
   "Research competitor pricing and business models",
@@ -16,6 +18,7 @@ const options = ["Todo", "Doing", "Done"];
 const ViewTaskPopup = (props) => {
   const { title, description, confirmText, cancelText, isOpen, onCancel } =
     props;
+  const { setModalState } = useModalsContext();
   const [isOpenInternal, setIsOpenInternal] = useState(isOpen);
   const [currentStatus, setCurrentStatus] = useState("");
   const [openMenu, setOpenMenu] = useState(false);
@@ -47,7 +50,7 @@ const ViewTaskPopup = (props) => {
   };
 
   const handleTaskEdit = () => {
-    console.log("task edit");
+      setModalState({ open: true, view: ModalState.editTask });
   };
 
   const handleTaskDelete = () => {
@@ -59,7 +62,7 @@ const ViewTaskPopup = (props) => {
       {/* Custom content as children */}
 
       <div className="flex justify-between items-center mb-6">
-        <h2 className=" heading-lg text-black dark:text-white dark:text-white w-[387px]">
+        <h2 className=" heading-lg text-black dark:text-white w-[387px]">
           {title}
         </h2>
         <div
@@ -73,7 +76,7 @@ const ViewTaskPopup = (props) => {
             height={20}
           />
           {openMenu && (
-            <div className="bg-white dark:bg-dark-gray dark:bg-very-dark-gray absolute top-[31px] left-[-75px] w-[192px] h-[94px] rounded-lg flex flex-col items-start justify-center pl-4 txt-md">
+            <div className="bg-white dark:bg-very-dark-gray absolute top-[31px] left-[-75px] w-[192px] h-[94px] rounded-lg flex flex-col items-start justify-center pl-4 txt-md">
               <p className="text-medium-gray mb-2" onClick={handleTaskEdit}>
                 Edit Task
               </p>

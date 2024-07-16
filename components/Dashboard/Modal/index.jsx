@@ -6,16 +6,51 @@ import { useModalsContext } from "@/context/ModalsContext";
 import { ModalState } from "@/assets/constants/modalStates";
 
 const Modal = () => {
-  const { setModalState, modalState } = useModalsContext();
+  const { modalState, setModalState } = useModalsContext();
   const activeModal = modalState.view;
 
   return (
     <>
-      {activeModal === ModalState.viewTask && <ViewTaskPopup isOpen={modalState.open} />}
-      {activeModal === ModalState.addTask && (
-        <CreateTaskPopup isOpen={modalState.open} />
+      {activeModal === ModalState.viewTask && (
+        <ViewTaskPopup
+          isOpen={modalState.open}
+          onCancel={() => {
+            setModalState({
+              open: false,
+              view: "",
+            });
+            title = "Nice Dear"
+            description = "hui huiii"
+          }}
+        />
       )}
-      {activeModal === ModalState.addBoard && <AddBoardPopup isOpen={modalState.open} />}
+      {((activeModal === ModalState.addTask) ||
+        (activeModal === ModalState.editTask)) && (
+          <CreateTaskPopup
+            mode={modalState.mode}
+            isOpen={modalState.open}
+            onCancel={() => {
+              setModalState({
+                mode: "",
+                open: false,
+                view: "",
+              });
+            }}
+          />
+        )}
+      {activeModal === ModalState.addBoard && (
+        <AddBoardPopup
+          mode={modalState.mode}
+          isOpen={modalState.open}
+          onCancel={() => {
+            setModalState({
+              mode: "",
+              open: false,
+              view: "",
+            });
+          }}
+        />
+      )}
       {activeModal === ModalState.deleteBoard && (
         <ConfirmationPopup isOpen={modalState.open} />
       )}
